@@ -38,4 +38,4 @@ const generate = async (question) => {
     }
 };
 
-module.exports = { generate, init };
+module.exports = { generate };
