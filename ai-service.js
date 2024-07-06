@@ -25,7 +25,6 @@ const generate = async (question) => {
     try {
         const result = await geminiModel.generateContent(question);
         const response = result.response;
-        console.log(response.text());
         return {
             error: false,
             response: response.text(),
