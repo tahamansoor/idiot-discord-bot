@@ -1,5 +1,5 @@
 const { Client, Events, GatewayIntentBits } = require('discord.js');
-const {generate, init} = require('./ai-service.js')
+const {generate } = require('./ai-service.js')
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -24,7 +24,6 @@ client.on('ready', () => {
     });
 });
 
-init()
 client.on('interactionCreate', async (interaction) => {
     console.log(interaction)
     if (!interaction.isCommand()) return;
