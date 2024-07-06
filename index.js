@@ -1,12 +1,12 @@
-const { Client, Events, GatewayIntentBits } = require('discord.js');
-const {generate, init} = require('./ai-service.js')
+const { Client, GatewayIntentBits } = require('discord.js');
+const { generate } = require('./ai-service.js')
 const dotenv = require("dotenv");
 dotenv.config();
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // give permission to send reply
-client.on('ready', () => {
+client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
     client.guilds.cache.forEach(guild => {
         guild.commands.create({
@@ -26,13 +26,11 @@ client.on('ready', () => {
 
 init()
 client.on('interactionCreate', async (interaction) => {
-    console.log(interaction)
     if (!interaction.isCommand()) return;
 
     const { commandName, options } = interaction;
 
     if (commandName === 'ask') {
-        console.log(options)
         const question = options.getString('q');
 
         await interaction.deferReply();
