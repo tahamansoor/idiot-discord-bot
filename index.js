@@ -3,7 +3,7 @@ const { generate } = require('./ai-service.js');
 const dotenv = require("dotenv");
 dotenv.config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
 
 // give permission to send reply
 client.once('ready', () => {
