@@ -46,4 +46,24 @@ client.on('interactionCreate', async (interaction) => {
     }
 });
 
+client.on('messageCreate', async message => {
+    // Ignore messages from bots
+    if (message.author.bot) return;
+
+    // Ignore messages that don't mention the bot
+    if (!message.mentions.has(client.user)) return;
+
+    console.log('metioned')
+
+    // come up with good line when someone metions you in chat
+    const res = await generate(`someone mentioned you in chat. a short witty reply. don't use quotes. be more like human altough you are not`)
+    try {
+        message.reply(res.response);
+    } catch {
+        message.reply('There was an error processing your request.');
+
+    }
+
+})
+
 client.login(process.env.BOT_TOKEN);
